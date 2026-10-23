@@ -78,6 +78,16 @@ for pair in "adw-board:board/board.py" "adw-ask:board/asks.py" "adw-status:board
   fi
 done
 
+if command -v go >/dev/null 2>&1; then
+  if (cd "$REPO/tui" && go build -o "$BIN_DIR/adw-tui" .); then
+    note "built $BIN_DIR/adw-tui"
+  else
+    note "adw-tui did not build; the rest of the install is unaffected"
+  fi
+else
+  note "go not found; skipped adw-tui (terminal board). Install Go 1.24+ and re-run to get it"
+fi
+
 echo "skills -> $SKILLS_DIR"
 for d in "$REPO"/skills/*/; do
   [ -d "$d" ] || continue

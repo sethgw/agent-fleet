@@ -9,3 +9,6 @@ merge-overrides.jsonl
 pr-tools.json
 PAUSED.json
 HOLDS.jsonl
+
+# adw-tui build output
+/tui/adw-tui
