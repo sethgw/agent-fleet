@@ -22,6 +22,7 @@ merged PR without being supervised turn by turn — and who want one place to se
 - macOS for `cow-worktree`'s copy-on-write cloning (APFS `clonefile`); elsewhere it falls back to a
   plain `git worktree add`, and `--launchd` is macOS-only
 - Python 3.11+ (stdlib only)
+- Go 1.24+ — optional, for `adw-tui`; `install.sh` skips it without Go
 - git, the GitHub CLI (`gh`), herdr, Claude Code
 - Claude Code subagents named `worker`, `reviewer`, `codex` and `adw-conductor`; the skills dispatch them
   by name, so copy or link the examples in `agents/` into `~/.claude/agents/`
@@ -51,7 +52,9 @@ tab inside Claude Code:
 /adw-lead orders "Add partial refunds to the orders API"
 ```
 
-or, for a single scoped change, `/adw <repo-key> <brief.md>`. Open http://127.0.0.1:4518/ to watch.
+or, for a single scoped change, `/adw <repo-key> <brief.md>`. Open http://127.0.0.1:4518/ to watch, or run
+`adw-tui` in a herdr tab for the terminal board, which is built for reviewing diffs, verdicts and findings
+(`docs/tui.md`).
 
 ## Map
 
@@ -62,6 +65,7 @@ or, for a single scoped change, `/adw <repo-key> <brief.md>`. Open http://127.0.
 | `skills/adw-lead/` | `/adw-lead` — the epic conductor |
 | `skills/first-mate/`, `skills/continue/` | the fleet overseer tab, and jumping to one board item |
 | `skills/retro/`, `skills/efficiency-review/`, `skills/herdr/` | session retrospective, weekly spend review, driving herdr |
+| `tui/` | `adw-tui`, the terminal board (Go): decisions, segments with diff, verdicts, findings and PR state, live tab screens |
 | `board/` | the ADW Board, `adw-ask` (decision queue), `adw-status` (tab state), `adw-epic-report` (per-epic cost and cycle report) |
 | `bin/` | `cow-worktree`, `ci-preflight`, `review-receipt`, the pre-push gate, `adw-lead-state`, pruning |
 | `bin/pr-state`, `pr-ship`, `pr-reply` | PR CI/review/merge state, rule-gated merge, review-thread replies; configured by `$ADW_HOME/pr-tools.json` |
@@ -76,6 +80,7 @@ or, for a single scoped change, `/adw <repo-key> <brief.md>`. Open http://127.0.
 | `docs/hooks.md` | what each hook does and the `settings.json` snippet to register them |
 | `docs/way-of-working.md` | the whole method in two pages — start here |
 | `docs/board.md` | the fleet layer: board, decisions, status, first mate |
+| `docs/tui.md` | the terminal board: layout, keys, data sources |
 | `docs/ci-gate.md` | local CI parity and the pre-push gate |
 | `docs/multi-machine.md` | one hub board over several machines' herdr sockets (optional) |
 | `docs/worktrees.md` | copy-on-write worktrees |
